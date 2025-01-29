@@ -11,7 +11,7 @@ def predict(model_fn, historic_data_fn, future_climatedata_fn, predictions_fn):
     y_pred = model.predict(X)
     df['sample_0'] = y_pred
     df.to_csv(predictions_fn, index=False)
-    return y_pred
+    print("Predictions: ", y_pred)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Predict using the trained model.')

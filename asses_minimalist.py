@@ -1,13 +1,19 @@
 from evaluate import evaluate
-import sys
-sys.path.append("Minimalist_example")
+from Minimalist_example.train import train
+from Minimalist_example.predict import predict
+import pandas as pd
 
-from train import train
-from predict import predict
+def get_samples():
+    df = pd.read_csv("your_file.csv")
+    samples = list(df["sample_0"].tolist())
+    return samples
 
 
 train("input/trainData.csv", "output/model.bin")
-samples = predict("output/model.bin", "input/trainData.csv", "input/futureClimateData.csv", "output/predictions.csv")
+predict("output/model.bin", "input/trainData.csv", "input/futureClimateData.csv", "output/predictions.csv")
+
+
+samples = get_samples()
 true_values = [250, 400, 450]
 
 MAE = evaluate(true_values, samples)
