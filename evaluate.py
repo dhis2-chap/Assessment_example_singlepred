@@ -1,8 +1,9 @@
 
-
+def mean(samples):
+    return sum(samples)/len(samples)
 def evaluate(true_values, samples):
     time_periods = len(true_values)
-    prediction = samples[0]
+    prediction = [mean(s) for s in samples] # mean of samples
     error = 0
 
     for i in range(time_periods):
