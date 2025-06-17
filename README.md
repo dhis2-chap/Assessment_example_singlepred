@@ -1,6 +1,6 @@
 # Minimalist Example of Model Assessment
 
-This document provides a minimalist example of how to write Python code for basic model assessment. The data and model are taken from the `minimalist_example` repository. The model is evaluated using Mean Absolute Error (MAE), assuming a single predicted value per month. This example is neither CHAP-compatible nor a robust evaluation pipeline. Its sole purpose is to serve as a simple introduction to writing model assessment code.
+This document provides a minimalist example of how to write Python code for basic model assessment. The data and model are taken from the `minimalist_example` repository. The model is evaluated using Mean Absolute Error (MAE), but it can be easily modified to calculate other metrics as well. To keep the example simple, we assume that the data contains only one region. This evaluation is neither CHAP-compatible nor a robust evaluation pipeline. Its sole purpose is to serve as a simple introduction to writing model assessment code.
 
 
 ## Running assessment in isolation
@@ -24,6 +24,7 @@ MAE = evaluate(true_values, samples)
 print(f"MAE: {MAE}")
 ```
 
+The samples variable is structured as a list of lists because model predictions are treated as uncertain. Each inner list contains alternative predictions for a single time period, allowing the evaluation to take prediction uncertainty into account.
 
 ### The evaluation function 
 In this minimalist example of model assessment, we use an evaluation function that takes the true values and prediction samples as input and returns an error value. More specifically, the evaluator computes the Mean Absolute Error (MAE) between the true values and the mean of the prediction samples.
